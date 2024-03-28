@@ -1,0 +1,55 @@
+<%- include("../partials/header", {title: title}); %>
+
+<h1>Products in your korg</h1>
+
+
+<p><i>To output the content of the Picklist table.</i></p>
+
+<table class="tableid">
+    <thead>
+        <tr>
+            <th>Order ID</th>
+            <th>Product ID</th>
+            <th>Name</th>
+            <th>Amount</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+<% for (const row of res) { %>
+    <tbody>
+        <tr>
+            <td><%= row.order_id %></td>
+            <td><%= row.product_id %></td>
+            <td><%= row.name %></td>
+            <td><%= row.ordered_quantity%></td>
+            <td><%= row.price %></td>
+        </tr>
+    </tbody>
+<% }; %>
+
+</table>
+
+<p class="totalprice">Total: <span id="total"></span></p>
+
+<script>
+    let total = 0;
+    const prices = document.querySelectorAll('td:nth-child(5)');
+    const quantities = document.querySelectorAll('td:nth-child(4)');
+    for (let i = 0; i < prices.length; i++) {
+        total += parseInt(prices[i].textContent) * parseInt(quantities[i].textContent);
+    }
+    document.getElementById('total').textContent = total + " $";
+</script>
+
+
+
+<form action="/order/show/<%=orderId %>" method="post">
+    <input type="hidden" name="order_id" value="<%= orderId %>">
+    <button class="button" onclick="window.location.href='/eshop/order/send'">Order</button>
+</form>
+
+
+<br>
+<button class="button" onclick="window.location.href='/eshop/order_row/create/<%= orderId %>'">Add product</button>
+
+<%- include("../partials/footer"); %>

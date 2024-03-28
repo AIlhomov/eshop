@@ -1,0 +1,45 @@
+<%- include("../partials/header"), {title: title}; %>
+
+<h1>Our fellow orders</h1>
+
+
+<p><i>To output the content of the Order table.</i></p>
+
+<table class="tableid">
+    <thead>
+        <tr>
+            <th>order ID</th>
+            <th>customer ID</th>
+            <th>name</th>
+            <th>order date</th>
+            <th>quantity</th>
+            <th>status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+<% for (const row of one) { %>
+    <tbody>
+        <tr>
+            <td><%= row.order_id %></td>
+            <td><%= row.customer_id %></td>
+            <td><%= row.name %></td>
+            <td><%= row.date_of_order %></td>
+            <td><%= row.ordered_quantity %></td>
+            <td <% if (row.status === "Ordered") { %>style="color: green;"<% } %>><%= row.status %></td>
+            <form action="/order" method="post">
+                <td class="select">
+                    <input type="hidden" name="order_id" value="<%= row.order_id %>">
+                    <input type="hidden" name="ordered_quantity" value="<%= row.ordered_quantity %>">
+
+                    <button class="button">Order</button>            
+                    <!-- <button href="/eshop/order/show/<%= row.order_id %>" class="button">Order</button> -->
+                </td>
+            </form>
+        </tr>
+    </tbody>
+<% }; %>
+</table>
+
+<button class="button" onclick="window.location.href='/eshop/customer'">Customers</button>
+
+<%- include("../partials/footer"); %>

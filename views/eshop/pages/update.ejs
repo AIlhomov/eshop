@@ -1,0 +1,16 @@
+<%- include ("../partials/header"), {title: title} %>
+
+<h1>Update a product</h1>
+
+<form method="post" action="/eshop/update">
+    <label>ID</label>
+    <input type="number" name="p_id" value="<%= one.product_id %>" readonly>
+    <label>Name</label>
+    <input type="text" name="name" value="<%= one.name %>">
+    <label>Price</label>
+    <input type="number" name="price" value="<%= one.price %>">
+
+    <input type="submit" value="Update">
+</form>
+
+<%- include("../partials/footer"); %>

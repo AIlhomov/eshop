@@ -1,0 +1,16 @@
+<%- include ("../partials/header"), {title: title} %>
+
+<h1>Delete a product</h1>
+
+<form method="post" action="/eshop/delete">
+    <label>ID</label>
+    <input type="number" name="p_id" value="<%= one.product_id %>" readonly>
+    <label>Name</label>
+    <input type="text" name="name" value="<%= one.name %>" readonly>
+    <label>Price</label>
+    <input type="number" name="price" value="<%= one.price %>" readonly>
+
+    <input type="submit" value="Delete">
+</form>
+
+<%- include("../partials/footer"); %>

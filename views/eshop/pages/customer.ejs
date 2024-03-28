@@ -1,0 +1,35 @@
+<%- include("../partials/header"), {title: title}; %>
+
+<h1>Our fellow customers</h1>
+
+
+<p><i>To output the content of the Customer table.</i></p>
+
+<table class="tableid">
+    <thead>
+        <tr>
+            <th>customer_id</th>
+            <th>name</th>
+            <th>address</th>
+            <th>phone</th>
+            <th>email</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+<% for (const row of res) { %>
+    <tbody>
+        <tr>
+            <td><%= row.customer_id %></td>
+            <td><%= row.name %></td>
+            <td><%= row.address %></td>
+            <td><%= row.phone_number %></td>
+            <td><%= row.email %></td>
+            <td class="select">
+                <a href="/eshop/order/create/<%= row.customer_id %>" class="button">Create order</a>
+            </td>
+            <!-- <a href="/eshop/customer/order/create<%= row.customer_id %>" class="button">Create order</a> -->
+        </tr>
+    </tbody>
+<% }; %>
+</table>
+<%- include("../partials/footer"); %>

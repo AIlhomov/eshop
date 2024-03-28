@@ -1,0 +1,47 @@
+<%- include("../partials/header"), {title: title}; %>
+
+<h1>Create new order</h1>
+
+
+<p><i>To output the content of one customer table.</i></p>
+
+<table class="tableid">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+<% for (const row of res) { %>
+    <tbody>
+        <tr>
+            <td><%= row.customer_id %></td>
+            <td><%= row.name %></td>
+            <td><%= row.address %></td>
+            <td><%= row.phone_number %></td>
+            <td><%= row.email %></td>
+        </tr>
+    </tbody>
+<% }; %>
+
+</table>
+<form action="/order/create" method="post">
+    <input type="hidden" name="customer_id" value="<%= customer_id %>">
+    <!-- <button class="button" onclick="window.location.href='/eshop/order'" event="click">Create new order</button> -->
+    <button class="button">Create new order</button>
+
+</form>
+
+<script>
+    document.querySelector('.button').addEventListener('click', function() {
+        alert('Order created');
+    });
+</script>
+
+<br>
+<button class="button" onclick="window.location.href='/eshop/customer'">Customers</button>
+
+<%- include("../partials/footer"); %>
